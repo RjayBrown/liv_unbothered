@@ -1,97 +1,79 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useStoreContext } from "../../utils/hooks/useStoreContext";
+import { MobileNavbar } from "./MobileNavbar";
+import { FaRegCircleUser } from "react-icons/fa6";
+import { IoSearch } from "react-icons/io5";
+import { PiShoppingCartBold } from "react-icons/pi";
 
 export const Navbar = () => {
-	const [visible, setVisible] = useState<Boolean>(false);
 	const { user, updateUser } = useStoreContext();
+	const [visible, setVisible] = useState<boolean>(false);
+	const navigate = useNavigate();
+	const location = useLocation();
+
 	return (
-		<header className="flex justify-between items-center p-6 md:px-24 mb-5">
-			<NavLink to={""} className="w-1/3 justify-self-start">
-				<h1
-					onClick={() => (user === "Me" ? updateUser("You") : updateUser("Me"))} // remove after finishing home page
-				>
-					LOGO {user}
-				</h1>
-			</NavLink>
-			<nav className="hidden sm:flex justify-center items-center gap-4 w-1/3">
+		<header className="flex justify-between items-center cursor-pointer px-6 sm:px-0 py-6 md:mx-24 mb-12 border border-b-gray-300 border-l-0 border-r-0 border-t-0">
+			<h1
+				onClick={() => {
+					user === "Me" ? updateUser("You") : updateUser("Me");
+					navigate("");
+				}} // remove after finishing home page
+			>
+				LOGO {user}
+			</h1>
+
+			<nav className="hidden sm:flex justify-center items-center gap-4">
 				<NavLink className="flex flex-col justify-center items-center" to={""}>
-					Home
+					HOME
+					<hr className="w-2/4 border-none h-[1.5px] bg-transparent" />
+				</NavLink>
+				<NavLink
+					className="flex flex-col justify-center items-center"
+					to={"products"}
+				>
+					PRODUCTS
 					<hr className="w-2/4 border-none h-[1.5px] bg-transparent" />
 				</NavLink>
 				<NavLink
 					className="flex flex-col justify-center items-center"
 					to={"about"}
 				>
-					About
+					ABOUT
 					<hr className="w-2/4 border-none h-[1.5px] bg-transparent" />
 				</NavLink>
 				<NavLink
 					className="flex flex-col justify-center items-center"
 					to={"contact"}
 				>
-					Contact
+					CONTACT
 					<hr className="w-2/4 border-none h-[1.5px] bg-transparent" />
 				</NavLink>
 			</nav>
 
-			<div className="flex gap-4 w-1/3 justify-end items-center">
-				<NavLink
-					to={"login"}
-					className="my-3 px-3 py-1 bg-sky-600 hover:bg-sky-500 text-white rounded w-fit transition-colors"
+			<div className="flex justify-center items-center gap-4">
+				<span
+					className="cursor-pointer"
+					onClick={() => {
+						if (location.pathname !== "/products") {
+							navigate("/products");
+						}
+					}}
 				>
-					Log-In / Register
-				</NavLink>
-				<h1
-					onClick={() => setVisible(true)}
-					className="cursor-pointer sm:hidden"
-				>
-					MENU
-				</h1>
-				<div
-					className={`absolute top-0 right-0 bottom-0 overflow-hidden flex flex-col pt-12 gap-4 justify-start items-start pl-6 bg-white transition-all ${
-						visible ? "w-full " : "w-0"
-					}`}
-				>
-					<span
-						className="text-red-800 self-start mb-4"
-						onClick={() => setVisible(false)}
-					>
-						Go Back
-					</span>
-					<NavLink
-						onClick={() => setVisible(false)}
-						className="flex flex-col justify-center items-start"
-						to={""}
-					>
-						Home
-						<hr className=" border-none h-[1.5px] bg-transparent" />
-					</NavLink>
-					<NavLink
-						onClick={() => setVisible(false)}
-						className="flex flex-col justify-center items-start"
-						to={"collection"}
-					>
-						Collection
-						<hr className="w-full border-none h-[1.5px] bg-transparent" />
-					</NavLink>
-					<NavLink
-						onClick={() => setVisible(false)}
-						className="flex flex-col justify-start items-start"
-						to={"about"}
-					>
-						About
-						<hr className="w-full border-none h-[1.5px] bg-transparent" />
-					</NavLink>
-					<NavLink
-						onClick={() => setVisible(false)}
-						className="flex flex-col justify-center items-center"
-						to={"contact"}
-					>
-						Contact
-						<hr className="w-full border-none h-[1.5px] bg-transparent" />
-					</NavLink>
+					<IoSearch className="text-lg" />
+				</span>
+				<div className="flex justify-center items-center relative">
+					<Link to="login">
+						<FaRegCircleUser className="text-lg" />
+					</Link>
 				</div>
+				<Link to="cart" className="relative">
+					<PiShoppingCartBold className="text-lg" />
+					<span className=" absolute right-[-7px] bottom-[-7px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]">
+						{0}
+					</span>
+				</Link>
+				<MobileNavbar toggle={{ visible, setVisible }} />
 			</div>
 		</header>
 	);
