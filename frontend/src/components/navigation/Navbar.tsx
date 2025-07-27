@@ -1,12 +1,18 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { useStoreContext } from "../../utils/hooks/useStoreContext";
 
 export const Navbar = () => {
 	const [visible, setVisible] = useState<Boolean>(false);
+	const { user, updateUser } = useStoreContext();
 	return (
 		<header className="flex justify-between items-center p-6 md:px-24 mb-5">
 			<NavLink to={""} className="w-1/3 justify-self-start">
-				<h1>LOGO</h1>
+				<h1
+					onClick={() => (user === "Me" ? updateUser("You") : updateUser("Me"))} // remove after finishing home page
+				>
+					LOGO {user}
+				</h1>
 			</NavLink>
 			<nav className="hidden sm:flex justify-center items-center gap-4 w-1/3">
 				<NavLink className="flex flex-col justify-center items-center" to={""}>
