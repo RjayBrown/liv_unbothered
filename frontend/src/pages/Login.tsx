@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../components/buttons/Button";
 
 export const Login = () => {
 	const emailRef = useRef<HTMLInputElement>(null);
@@ -69,12 +70,7 @@ export const Login = () => {
 					/>
 				</label>
 
-				<button
-					type="submit"
-					className="my-3 px-3 py-1 bg-sky-600 hover:bg-sky-500 text-white rounded w-28 transition-colors"
-				>
-					Log In
-				</button>
+				<Button type="submit">Log In</Button>
 			</form>
 		</>
 	);

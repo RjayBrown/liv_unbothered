@@ -1,7 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Outfit:wght@100..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 a.active hr {
-	background-color: darkgray;
+	background-color: rgb(75, 75, 75);
+}
+
+* {
+	font-family: Outfit, Verdana, sans-serif;
+}
+
+.changa-one-regular {
+	font-family: "Changa One", sans-serif;
+	font-weight: 400;
+	font-style: normal;
 }

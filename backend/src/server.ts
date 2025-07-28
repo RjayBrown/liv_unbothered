@@ -8,7 +8,6 @@ import errorHandler from "./middleware/errorHandler";
 import { authRoutes } from "./routes/auth-route";
 import { userRoutes } from "./routes/user-route";
 import { authenticate } from "./middleware/authenticate";
-import { sessionRoutes } from "./routes/session-route";
 import { dashboardRoutes } from "./routes/dashboard-route";
 
 const app = express();
@@ -46,12 +45,11 @@ app.use("/auth", authRoutes);
 app.use("/user", authenticate, userRoutes);
 app.use("/dashboard", authenticate, dashboardRoutes);
 
-app.use("/sessions", authenticate, sessionRoutes);
-
 // handle any errors
 app.use(errorHandler);
 
 /* DEVELOPMENT CONFIGURATION */
+export const sum = (a: number, b: number): number => a + b;
 
 /* PRODUCTION CONFIGURATION */
 

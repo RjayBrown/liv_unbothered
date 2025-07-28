@@ -6,6 +6,8 @@ interface ButtonProps {
 	type?: "submit" | "reset" | "button" | undefined;
 	onClick?: () => void;
 }
+
+export const sum = (a: number, b: number): number => a + b;
 export const Button: React.FC<ButtonProps> = ({
 	children,
 	className,
@@ -13,12 +15,12 @@ export const Button: React.FC<ButtonProps> = ({
 	onClick,
 }: ButtonProps) => {
 	return (
-		<Button
+		<button
 			className={`my-3 px-3 py-1 bg-gray-800 hover:bg-gray-700 text-white  w-fit transition-colors ${className}`}
 			type={type}
 			onClick={onClick}
 		>
 			{children}
-		</Button>
+		</button>
 	);
 };

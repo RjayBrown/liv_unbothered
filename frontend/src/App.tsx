@@ -8,6 +8,8 @@ import { Products } from "./pages/Products";
 import { Cart } from "./pages/Cart";
 import { Contact } from "./pages/Contact";
 import { Navbar } from "./components/navigation/Navbar";
+import { Footer } from "./components/sections/Footer";
+import { ProductPage } from "./pages/ProductPage";
 
 export const App = () => {
 	return (
@@ -20,12 +22,14 @@ export const App = () => {
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/login" element={<Login />} />
 
+				<Route path="product/:id" element={<ProductPage />} />
 				<Route path="/cart" element={<Cart />} />
 
 				<Route path="dashboard">
 					<Route index element={<h1>Main Dashboard</h1>} />
 				</Route>
 			</Routes>
+			<Footer />
 		</AppDataProvider>
 	);
 };

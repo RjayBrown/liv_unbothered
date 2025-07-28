@@ -5,6 +5,7 @@ import { MobileNavbar } from "./MobileNavbar";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
 import { PiShoppingCartBold } from "react-icons/pi";
+import { Button } from "../buttons/Button";
 
 export const Navbar = () => {
 	const { user, updateUser } = useStoreContext();
@@ -16,11 +17,10 @@ export const Navbar = () => {
 		<header className="flex justify-between items-center cursor-pointer px-6 sm:px-0 py-6 md:mx-24 mb-12 border border-b-gray-300 border-l-0 border-r-0 border-t-0">
 			<h1
 				onClick={() => {
-					user === "Me" ? updateUser("You") : updateUser("Me");
 					navigate("");
 				}} // remove after finishing home page
 			>
-				LOGO {user}
+				LOGO
 			</h1>
 
 			<nav className="hidden sm:flex justify-center items-center gap-4">
@@ -74,6 +74,17 @@ export const Navbar = () => {
 					</span>
 				</Link>
 				<MobileNavbar toggle={{ visible, setVisible }} />
+			</div>
+			<div className="flex items-center absolute top-[4.375rem] right-24 left-auto">
+				<h1 className="text-center w-fit mx-auto mr-2">Hello {user}!</h1>
+				<Button
+					type="button"
+					onClick={() =>
+						user === "You" ? updateUser("Me") : updateUser("You")
+					}
+				>
+					Switch
+				</Button>
 			</div>
 		</header>
 	);
