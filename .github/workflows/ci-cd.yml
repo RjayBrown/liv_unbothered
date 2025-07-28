@@ -32,6 +32,14 @@ jobs:
         working-directory: ./frontend
         run: npm run test
 
+      - name: Configure Vite
+        working-directory: ./frontend
+        run: |
+          echo 'export default { base: "/${{ github.event.repository.name }}/" }' > vite.config.js
+
+      - name: Build Frontend
+        run: npm run build
+
       - name: Install dependencies (server)
         working-directory: ./backend
         run: npm ci
@@ -39,10 +47,3 @@ jobs:
       - name: Run Tests (server)
         working-directory: ./backend
         run: npm run test
-
-      - name: Configure Vite
-        run: |
-          echo 'export default { base: "/${{ github.event.repository.name }}/" }' > vite.config.js
-
-      - name: Build Frontend
-        run: npm run build
