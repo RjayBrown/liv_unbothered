@@ -25,29 +25,29 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install Dependencies (client)
-        working-directory: ./frontend
+        working-directory: frontend
         run: npm ci
 
       - name: Run Tests (client)
-        working-directory: ./frontend
+        working-directory: frontend
         run: npm run test
 
       - name: Run TypeScript Check
-        run: tsc -b ./frontend
+        run: tsc -b frontend
 
       - name: Configure Vite
-        working-directory: ./frontend
+        working-directory: frontend
         run: |
           echo 'export default { base: "/${{ github.event.repository.name }}" }' > vite.config.js
 
       - name: Build Frontend
-        working-directory: ./frontend
+        working-directory: frontend
         run: npm run build
 
       - name: Install dependencies (server)
-        working-directory: ./backend
+        working-directory: backend
         run: npm ci
 
       - name: Run Tests (server)
-        working-directory: ./backend
+        working-directory: backend
         run: npm run test
