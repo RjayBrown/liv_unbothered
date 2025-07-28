@@ -26,7 +26,7 @@ jobs:
 
       - name: Install Dependencies (client)
         working-directory: ./frontend
-        run: npm install
+        run: npm ci
 
       - name: Run Tests (client)
         working-directory: ./frontend
@@ -34,17 +34,17 @@ jobs:
 
       - name: Install dependencies (server)
         working-directory: ./backend
-        run: npm install
+        run: npm ci
 
       - name: Run Tests (server)
         working-directory: ./backend
         run: npm test
 
-  # build-and-deploy:
-  #   name: Build & Deploy Project
-  #   runs-on: ubuntu-latest
+  build-and-deploy:
+    name: Build & Deploy Project
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - name: Build Frontend
-  #       working-directory: ./frontend
-  #       run: npm run build
+    steps:
+      - name: Build Frontend
+        working-directory: ./frontend
+        run: npm run build
