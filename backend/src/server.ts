@@ -49,7 +49,6 @@ app.use("/dashboard", authenticate, dashboardRoutes);
 app.use(errorHandler);
 
 /* DEVELOPMENT CONFIGURATION */
-export const sum = (a: number, b: number): number => a + b;
 
 /* PRODUCTION CONFIGURATION */
 

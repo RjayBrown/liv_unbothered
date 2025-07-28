@@ -7,7 +7,6 @@ interface ButtonProps {
 	onClick?: () => void;
 }
 
-export const sum = (a: number, b: number): number => a + b;
 export const Button: React.FC<ButtonProps> = ({
 	children,
 	className,

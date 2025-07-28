@@ -1,5 +1,4 @@
 import { expect, test } from "vitest";
-import {} from "../server";
 
 export const sum = (a: number, b: number): number => a + b;
 
