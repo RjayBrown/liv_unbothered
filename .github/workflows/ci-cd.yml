@@ -38,6 +38,7 @@ jobs:
           echo 'export default { base: "/${{ github.event.repository.name }}/" }' > vite.config.js
 
       - name: Build Frontend
+        working-directory: ./frontend
         run: npm run build
 
       - name: Install dependencies (server)
