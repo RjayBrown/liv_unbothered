@@ -33,7 +33,7 @@ jobs:
         run: npm run test
 
       - name: Run TypeScript Check
-        run: tsc --noEmit
+        run: tsc -b ./frontend
 
       - name: Configure Vite
         working-directory: ./frontend
