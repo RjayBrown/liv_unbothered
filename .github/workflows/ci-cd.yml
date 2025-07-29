@@ -49,6 +49,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Configure Vite
+        working-directory: frontend
+        run: |
+          echo 'export default { base: "/${{ github.event.repository.name }}" }' > vite.config.js
+
       - name: Build Frontend
         working-directory: frontend
         run: npm run build
