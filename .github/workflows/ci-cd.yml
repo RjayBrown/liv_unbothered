@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: Test & Build
+    name: Test
     runs-on: ubuntu-latest
 
     strategy:
@@ -35,15 +35,6 @@ jobs:
       - name: Run TypeScript Check
         run: tsc -b frontend
 
-      - name: Configure Vite
-        working-directory: frontend
-        run: |
-          echo 'export default { base: "/${{ github.event.repository.name }}" }' > vite.config.js
-
-      - name: Build Frontend
-        working-directory: frontend
-        run: npm run build
-
       - name: Install dependencies (server)
         working-directory: backend
         run: npm ci
@@ -51,3 +42,13 @@ jobs:
       - name: Run Tests (server)
         working-directory: backend
         run: npm run test
+
+  build-and-deploy:
+    name: Build & Deploy
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build Frontend
+        working-directory: frontend
+        run: npm run build
