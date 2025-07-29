@@ -45,11 +45,18 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: ["18.x", "20.x"]
+
     steps:
-      - name: Configure Vite
-        working-directory: frontend
-        run: |
-          echo 'export default { base: "/${{ github.event.repository.name }}/frontend" }' > vite.config.js
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
 
       - name: Build Frontend
         working-directory: frontend
