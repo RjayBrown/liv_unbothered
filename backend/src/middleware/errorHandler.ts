@@ -18,7 +18,7 @@ const handleZodError = (res: Response, error: z.ZodError) => {
 		message: err.message,
 	}));
 	return res.status(BAD_REQUEST).json({
-		message: "BAD REQUEST",
+		message: "Please fill out fields in the required format",
 		errors,
 	});
 };
@@ -30,7 +30,7 @@ const handleAppError = (res: Response, error: AppError) => {
 	});
 };
 
-const errorHandler: ErrorRequestHandler = (error, req, res) => {
+const errorHandler: ErrorRequestHandler = (error, req, res, next) => {
 	console.log(`PATH: ${req.path}`, error);
 
 	if (req.path === REFRESH_PATH) {
@@ -47,6 +47,7 @@ const errorHandler: ErrorRequestHandler = (error, req, res) => {
 		// Handle application errors
 		handleAppError(res, error);
 	}
+	next();
 };
 
 export default errorHandler;
