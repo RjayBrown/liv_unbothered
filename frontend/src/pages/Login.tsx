@@ -1,8 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Title } from "../components/Title";
 import { Button } from "../components/buttons/Button";
 
 export const Login = () => {
+	const [error, setError] = useState("");
 	const emailRef = useRef<HTMLInputElement>(null);
 	const passwordRef = useRef<HTMLInputElement>(null);
 	const navigate = useNavigate();
@@ -13,65 +15,63 @@ export const Login = () => {
 		const email = emailRef.current?.value;
 		const password = passwordRef.current?.value;
 
-		console.log({ email, password });
+		// console.log({ email, password });
 
 		(async () => {
 			const myHeaders = new Headers();
 			myHeaders.append("Content-Type", "application/json");
 			const url = "http://localhost:3000/auth/login";
 
-			try {
-				const res = await fetch(url, {
-					method: "POST",
-					body: JSON.stringify({ email, password }),
-					credentials: "include",
-					headers: myHeaders,
-				});
-				const data = await res.json();
-				console.log(data);
+			const res = await fetch(url, {
+				method: "POST",
+				body: JSON.stringify({ email, password }),
+				credentials: "include",
+				headers: myHeaders,
+			});
+			console.log(res);
+			const successMsg = await res.json();
 
-				const getUser = await fetch("http://localhost:3000/user", {
-					method: "GET",
-					credentials: "include",
-					headers: myHeaders,
-				});
-
-				const userData = await getUser.json();
-				console.log(userData);
-				navigate("dashboard/home");
-			} catch (error) {
-				console.log(error);
+			if (res.ok) {
+				console.log(successMsg.message);
+				navigate("..");
+			} else {
+				setError(successMsg.message);
 			}
 		})();
 	};
 
 	return (
-		<>
-			<h1 className="text-center text-3xl font-semibold">Log In</h1>
+		<div className="flex flex-col justify-center items-center w-11/12 mx-auto sm:w-full mt-24">
+			<Title text1="LOG" text2="IN" />
 			<form
 				onSubmit={handleSubmit}
-				className="flex flex-col justify-center items-center w-[12rem] mx-auto"
+				className="flex flex-col justify-center items-center w-full p-y6 sm:w-1/4"
 			>
-				<label htmlFor="email">
+				<label className="w-full" htmlFor="email">
 					<input
 						ref={emailRef}
 						type="email"
 						placeholder="Email"
-						className="p-1 my-2 mx-auto border rounded border-gray-700"
+						className="py-1 px-3 my-2 w-full border border-gray-700"
 					/>
 				</label>
 
-				<label htmlFor="password">
+				<label className="w-full" htmlFor="password">
 					<input
 						ref={passwordRef}
 						type="password"
 						placeholder="Password"
-						className="p-1 my-2 mx-auto border rounded border-gray-700"
+						className="py-1 px-3 my-2 border w-full border-gray-700"
 					/>
 				</label>
+				<h2
+					className={`${error ? "text-center text-red-700" : "text-transparent"}`}
+				>
+					{error}
+				</h2>
 
 				<Button type="submit">Log In</Button>
 			</form>
-		</>
+		</div>
 	);
 };

@@ -9,7 +9,7 @@ import { Cart } from "./pages/Cart";
 import { Contact } from "./pages/Contact";
 import { Navbar } from "./components/navigation/Navbar";
 import { Footer } from "./components/sections/Footer";
-import { ProductPage } from "./pages/ProductPage";
+import { ProductPage } from "./pages/Product";
 
 export const App = () => {
 	return (
