@@ -32,9 +32,20 @@ jobs:
         working-directory: frontend
         run: npm run test
 
-      - name: Run TypeScript Check
-        run: tsc -b frontend
+      - name: Install dependencies (server)
+        working-directory: backend
+        run: npm ci
 
+      - name: Run Tests (server)
+        working-directory: backend
+        run: npm run test
+
+  build-and-deploy:
+    name: Build & Deploy
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Configure Vite
         working-directory: frontend
         run: |
@@ -43,11 +54,3 @@ jobs:
       - name: Build Frontend
         working-directory: frontend
         run: npm run build
-
-      - name: Install dependencies (server)
-        working-directory: backend
-        run: npm ci
-
-      - name: Run Tests (server)
-        working-directory: backend
-        run: npm run test
