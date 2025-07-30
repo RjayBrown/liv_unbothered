@@ -17,7 +17,7 @@ export const ProductsPage = () => {
 	const [subCategory, setSubCategory] = useState<string>();
 	const [sortType, setSortType] = useState<SortTypes>("");
 
-	console.log(filteredProducts);
+	// console.log(filteredProducts);
 
 	useEffect(() => {
 		let productCopy = products.slice();
