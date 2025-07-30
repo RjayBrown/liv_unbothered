@@ -1,9 +1,8 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Title } from "../components/Title";
-import { Button } from "../components/buttons/Button";
+import { Button } from "../buttons/Button";
 
-export const Login = () => {
+export const LoginForm = () => {
 	const [error, setError] = useState("");
 	const emailRef = useRef<HTMLInputElement>(null);
 	const passwordRef = useRef<HTMLInputElement>(null);
@@ -41,37 +40,34 @@ export const Login = () => {
 	};
 
 	return (
-		<div className="flex flex-col justify-center items-center w-11/12 mx-auto sm:w-full mt-24">
-			<Title text1="LOG" text2="IN" />
-			<form
-				onSubmit={handleSubmit}
-				className="flex flex-col justify-center items-center w-full p-y6 sm:w-1/4"
+		<form
+			onSubmit={handleSubmit}
+			className="flex flex-col justify-center items-center w-full py-6 sm:w-2/4"
+		>
+			<label className="w-full" htmlFor="email">
+				<input
+					ref={emailRef}
+					type="email"
+					placeholder="Email"
+					className="py-1 px-3 my-2 w-full border border-gray-700"
+				/>
+			</label>
+
+			<label className="w-full" htmlFor="password">
+				<input
+					ref={passwordRef}
+					type="password"
+					placeholder="Password"
+					className="py-1 px-3 my-2 border w-full border-gray-700"
+				/>
+			</label>
+			<h2
+				className={`${error ? "text-center text-red-700" : "text-transparent"}`}
 			>
-				<label className="w-full" htmlFor="email">
-					<input
-						ref={emailRef}
-						type="email"
-						placeholder="Email"
-						className="py-1 px-3 my-2 w-full border border-gray-700"
-					/>
-				</label>
+				{error}
+			</h2>
 
-				<label className="w-full" htmlFor="password">
-					<input
-						ref={passwordRef}
-						type="password"
-						placeholder="Password"
-						className="py-1 px-3 my-2 border w-full border-gray-700"
-					/>
-				</label>
-				<h2
-					className={`${error ? "text-center text-red-700" : "text-transparent"}`}
-				>
-					{error}
-				</h2>
-
-				<Button type="submit">Log In</Button>
-			</form>
-		</div>
+			<Button type="submit">Log In</Button>
+		</form>
 	);
 };

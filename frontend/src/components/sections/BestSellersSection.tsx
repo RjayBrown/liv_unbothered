@@ -3,14 +3,14 @@ import { AppDataContext, type Products } from "../../contexts/AppDataContext";
 import { ProductCard } from "../ProductCard";
 import { Title } from "../Title";
 
-export const BestSellers = () => {
+export const BestSellersSection = () => {
 	const context = useContext(AppDataContext);
 	const [topFiveProducts, setTopFiveProducts] = useState<Products>([]);
 
 	// replace with custom hook to get data from api
 	const bestSellers = context!.products.filter((product) => product.bestseller);
 	useEffect(() => {
-		setTopFiveProducts(bestSellers.slice(0, 6));
+		setTopFiveProducts(bestSellers.slice(0, 5));
 	}, []);
 	return (
 		<div className="my-10">

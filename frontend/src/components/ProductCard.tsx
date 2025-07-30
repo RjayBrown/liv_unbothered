@@ -10,7 +10,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
 	return (
 		<div onClick={() => navigate(`../product/${product._id}`)}>
-			<div className="w-full overflow-hidden shadow-md">
+			<div className="w-full overflow-hidden border border-gray-100 shadow-md sm:shadow-none hover:shadow-md">
 				<img
 					src={product.image[0]}
 					className="w-full h-[18rem] hover:scale-110 transition ease-in-out"

@@ -1,8 +1,7 @@
-import { Button } from "../components/buttons/Button";
 import { Title } from "../components/Title";
 import img from "../assets/LIV-UNBOTHERED.jpg";
 
-export const Contact = () => {
+export const ContactPage = () => {
 	return (
 		<div className="px-6 sm:px-24 flex flex-col justify-center items-center">
 			<div className="mb-7">
@@ -28,7 +27,12 @@ export const Contact = () => {
 						Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
 						inventore quas modi.
 					</p>
-					<Button onClick={() => console.log("Clicked!")}>Reach Out</Button>
+					<a
+						className="my-3 px-3 py-1 bg-gray-800 hover:bg-gray-700 text-white  w-fit transition-colors"
+						href="mailto:emal@mail.com"
+					>
+						Reach Out
+					</a>
 				</div>
 			</div>
 		</div>

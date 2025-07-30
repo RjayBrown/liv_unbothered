@@ -2,7 +2,7 @@ import { Title } from "../components/Title";
 import { SocialLinkSection } from "../components/sections/SocialLinkSection";
 import img from "../assets/LIV-UNBOTHERED.jpg";
 
-export const About = () => {
+export const AboutPage = () => {
 	return (
 		<div className="px-6 sm:px-24 flex flex-col justify-center items-center w-full">
 			<div className="mb-7">

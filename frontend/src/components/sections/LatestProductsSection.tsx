@@ -3,7 +3,7 @@ import { AppDataContext, type Products } from "../../contexts/AppDataContext";
 import { Title } from "../Title";
 import { ProductCard } from "../ProductCard";
 
-export const LatestCollection = () => {
+export const LatestProductsSection = () => {
 	const context = useContext(AppDataContext);
 	const [latestProducts, setLatestProducts] = useState<Products>([]);
 

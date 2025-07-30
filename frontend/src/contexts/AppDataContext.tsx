@@ -1,4 +1,4 @@
-import {
+import React, {
 	createContext,
 	useEffect,
 	useState,
@@ -8,9 +8,14 @@ import {
 import { MOCK_DATA } from "../utils/MOCK_DATA"; // TODO: replace with product data - fetch from within context provider
 
 export type AppDataContextType = {
+	// TODO: add correct user type - set up backend first
 	user: string;
 	updateUser: (name: "Me" | "You") => void;
 	products: Products;
+	showSearch: boolean;
+	setShowSearch: React.Dispatch<React.SetStateAction<boolean>>;
+	search: string;
+	setSearch: React.Dispatch<React.SetStateAction<string>>;
 } | null;
 
 export type Product = {
@@ -38,6 +43,8 @@ export const AppDataContext = createContext<AppDataContextType>(null);
 
 export const AppDataProvider: FC<AppDataProviderProps> = ({ children }) => {
 	const [user, setUser] = useState("Me");
+	const [search, setSearch] = useState("");
+	const [showSearch, setShowSearch] = useState(false);
 
 	const updateUser = (name: "Me" | "You") => {
 		setUser(name);
@@ -48,6 +55,10 @@ export const AppDataProvider: FC<AppDataProviderProps> = ({ children }) => {
 		user,
 		updateUser,
 		products: MOCK_DATA,
+		search,
+		setSearch,
+		showSearch,
+		setShowSearch,
 	};
 
 	useEffect(() => {
