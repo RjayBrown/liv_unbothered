@@ -8,7 +8,7 @@ export const ContactPage = () => {
 				<Title text1="CONTACT" text2="US" />
 			</div>
 			<div className="flex flex-col sm:flex-row justify-around mx-auto mb-12 w-full sm:w-4/5 gap-8">
-				<div className="h-[424px] w-full sm:w-[45%] border border-black">
+				<div className="h-[424px] w-full sm:w-[45%] border border-gray-300">
 					<img src={img} className="w-full h-full"></img>
 				</div>
 				<div className="flex flex-col justify-center sm:justify-around w-full sm:w-2/5 gap-4">

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { AppDataProvider } from "./contexts/AppDataContext";
 import "./index.css";
 import { HomePage } from "./pages/HomePage";
@@ -11,8 +11,14 @@ import { Navbar } from "./components/navigation/Navbar";
 import { Footer } from "./components/Footer";
 import { SingleProductPage } from "./pages/SingleProductPage";
 import { SearchBar } from "./components/SearchBar";
+import { useEffect } from "react";
 
 export const App = () => {
+	const location = useLocation();
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [location.pathname]);
+
 	return (
 		<AppDataProvider>
 			<Navbar />
@@ -24,7 +30,7 @@ export const App = () => {
 				<Route path="/contact" element={<ContactPage />} />
 				<Route path="/login" element={<LoginPage />} />
 
-				<Route path="product/:id" element={<SingleProductPage />} />
+				<Route path="products/:id" element={<SingleProductPage />} />
 				<Route path="/cart" element={<CartPage />} />
 
 				<Route path="dashboard">

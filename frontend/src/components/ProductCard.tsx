@@ -9,7 +9,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 	const navigate = useNavigate();
 
 	return (
-		<div onClick={() => navigate(`../product/${product._id}`)}>
+		<div onClick={() => navigate(`../products/${product._id}`)}>
 			<div className="w-full overflow-hidden border border-gray-100 shadow-md sm:shadow-none hover:shadow-md">
 				<img
 					src={product.image[0]}
