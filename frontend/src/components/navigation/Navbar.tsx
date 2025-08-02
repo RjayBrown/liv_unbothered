@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useStoreContext } from "../../utils/hooks/useStoreContext";
 import { MobileNavbar } from "./MobileNavbar";
@@ -12,8 +12,15 @@ export const Navbar = () => {
 	const navigate = useNavigate();
 	const location = useLocation();
 
+	useEffect(() => {
+		const body = document.querySelector("body");
+		if (body) {
+			visible ? (body!.style.overflow = "hidden") : (body!.style.overflow = "");
+		}
+	}, [visible]);
+
 	return (
-		<header className="flex justify-between items-center cursor-pointer px-4 sm:px-0 py-6 md:mx-24 mb-6 sm:mb-12">
+		<header className="flex justify-between items-center cursor-pointer px-4 sm:px-0 py-6 md:mx-24">
 			<h1
 				onClick={() => {
 					navigate("");

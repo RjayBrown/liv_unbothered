@@ -1,8 +1,8 @@
 import "@testing-library/jest-dom"; // extend matcher properties for test cases
 
 import { describe, it, expect, test } from "vitest";
-import { render, screen } from "@testing-library/react";
-import { App } from "../src/App";
+// import { render, screen } from "@testing-library/react";
+// import { App } from "../src/App";
 
 describe("Test App", () => {
 	const sum = (a: number, b: number): number => a + b;

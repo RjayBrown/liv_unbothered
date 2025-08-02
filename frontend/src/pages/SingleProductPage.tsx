@@ -22,45 +22,45 @@ export const SingleProductPage = ({}) => {
 	});
 
 	return (
-		<div className="flex-col justify-center items-center px-4 sm:px-24">
-			<div className="my-12 flex flex-col sm:flex-row justify-center items-center sm:items-start gap-4 sm:gap-8">
-				<div className="flex gap-2 h-full">
-					<div className="flex flex-col gap-2 h-full">
-						<div className="overflow-hidden border-2 border-gray-100 shadow-md sm:shadow-none hover:shadow-md transition-all cursor-pointer">
+		<div className="flex-col justify-center items-center mx-4 sm:mx-24 py-12 border border-l-0 border-r-0 border-t-gray-400">
+			<div className="flex gap-12 sm:gap-20 flex-col sm:flex-row sm:justify-around">
+				<div className="flex flex-col-reverse sm:flex-row gap-2 h-full">
+					<div className="flex flex-row sm:flex-col gap-2 h-full">
+						<div className="overflow-hidden border-2 w-1/4 sm:w-full border-gray-100 shadow-md sm:shadow-none hover:shadow-md transition-all cursor-pointer">
 							<img
 								src={img}
-								className="h-[75px] sm:h-[100px] w-[100px] sm:w-[100px] hover:scale-110 "
+								className="h-[100px] sm:w-[150px] hover:scale-110 "
 								onClick={() => setImgUrl(product!.image[0])}
 							></img>
 						</div>
-						<div className="overflow-hidden border-2 border-gray-100 shadow-md sm:shadow-none hover:shadow-md transition-all cursor-pointer">
+						<div className="overflow-hidden border-2 w-1/4 sm:w-full border-gray-100 shadow-md sm:shadow-none hover:shadow-md transition-all cursor-pointer">
 							<img
 								src={img}
-								className="h-[75px] sm:h-[100px] w-[100px] sm:w-[100px] hover:scale-110 "
+								className="h-[100px] sm:w-[150px] hover:scale-110 "
 								onClick={() => setImgUrl(product!.image[1])}
 							></img>
 						</div>
-						<div className="overflow-hidden border-2 border-gray-100 shadow-md sm:shadow-none hover:shadow-md transition-all cursor-pointer">
+						<div className="overflow-hidden border-2 w-1/4 sm:w-full border-gray-100 shadow-md sm:shadow-none hover:shadow-md transition-all cursor-pointer">
 							<img
 								src={img}
-								className="h-[75px] sm:h-[100px] w-[100px] sm:w-[100px] hover:scale-110 "
+								className="h-[100px] sm:w-[150px] hover:scale-110 "
 								onClick={() => setImgUrl(product!.image[2])}
 							></img>
 						</div>
-						<div className="overflow-hidden border-2 border-gray-100 shadow-md sm:shadow-none hover:shadow-md transition-all cursor-pointer">
+						<div className="overflow-hidden border-2 w-1/4 sm:w-full border-gray-100 shadow-md sm:shadow-none hover:shadow-md transition-all cursor-pointer">
 							<img
 								src={img}
-								className="h-[75px] sm:h-[100px] w-[100px] sm:w-[100px] hover:scale-110 "
+								className="h-[100px] sm:w-[150px] hover:scale-110 "
 								onClick={() => setImgUrl(product!.image[3])}
 							></img>
 						</div>
 					</div>
-					<div className="h-[340px] sm:h-[440px] w-[300px] sm:w-[440px] border-2 border-gray-100">
+					<div className="h-[340px] sm:h-[440px] w-full sm:w-[550px] border-2 border-gray-100">
 						<img src={imgUrl} className="w-full h-full"></img>
 					</div>
 				</div>
-				<div className="flex flex-col items-start justify-start gap-2 sm:gap-4 w-full sm:w-fit h-full">
-					<h1 className="text-4xl font-medium">{product!.name}</h1>
+				<div className="flex flex-col items-start justify-start gap-2 sm:gap-4 w-full sm:w-3/5 h-full">
+					<h1 className="text-3xl sm:text-4xl font-medium">{product!.name}</h1>
 					<h2 className="text-2xl font-medium">${product!.price}</h2>
 					<p className="text-gray-600">{product!.description}</p>
 					<h3>Select Size</h3>
