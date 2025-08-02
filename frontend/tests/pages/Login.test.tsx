@@ -1,7 +1,4 @@
-import "@testing-library/jest-dom"; // extend matcher properties for test cases
-
 import { expect, test } from "vitest";
-// import { render, screen } from "@testing-library/react";
 
 const sum = (a: number, b: number): number => a + b;
 

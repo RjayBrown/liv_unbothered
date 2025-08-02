@@ -1,7 +1,5 @@
-import "@testing-library/jest-dom"; // extend matcher properties for test cases
-
-import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+
 import { AboutPage } from "../../src/pages/AboutPage";
 import { ContactPage } from "../../src/pages/ContactPage";
 
