@@ -8,26 +8,28 @@ import { FaCaretUp } from "react-icons/fa6";
 type SortTypes = "new-items" | "low-high" | "high-low" | "";
 
 export const ProductsPage = () => {
-	const { products, search, showSearch } = useStoreContext();
+	const { products, productCount, setProductCount, search, showSearch } =
+		useStoreContext();
 	const [showFilter, setShowFilter] = useState(false);
-
 	const [filteredProducts, setFilteredProducts] = useState<Products>(products);
-	const [productCount, setProductCount] = useState(products.length);
 	const [category, setCategory] = useState<string>();
 	const [subCategory, setSubCategory] = useState<string>();
-	const [sortType, setSortType] = useState<SortTypes>("");
+	const [, setSortType] = useState<SortTypes>("");
 
-	console.log(sortType);
+	// console.log(sortType);
 
 	useEffect(() => {
 		let productCopy = products.slice();
+		let filtered = productCopy.filter((product) =>
+			product.name.toLowerCase().includes(search.toLowerCase())
+		);
 
-		if (showSearch && search) {
-			setFilteredProducts(
-				productCopy.filter((product) =>
-					product.name.toLowerCase().includes(search.toLowerCase())
-				)
-			);
+		if (showSearch && search && filtered.length) {
+			setFilteredProducts(filtered);
+			setProductCount(filtered.length);
+		} else {
+			setFilteredProducts(products);
+			setProductCount(products.length);
 		}
 	}, [search]);
 
@@ -37,9 +39,9 @@ export const ProductsPage = () => {
 			if (!category && !subCategory) btn.checked = false;
 		});
 
-		category || subCategory
-			? console.log(category, subCategory)
-			: console.log("No Filter!");
+		// category || subCategory
+		// 	? console.log(category, subCategory)
+		// 	: console.log("No Filter!");
 	}, [filteredProducts]);
 
 	const clearFilter = () => {
@@ -97,8 +99,8 @@ export const ProductsPage = () => {
 	};
 
 	return (
-		<div className="px-6 sm:px-0 sm:mx-24 flex flex-col sm:flex-row gap-1 sm:gap-10 pt-5 sm:pt-10">
-			<div className="min-w-40 lg:min-w-52">
+		<div className="mx-4 sm:mx-24 flex flex-col sm:flex-row gap-1 sm:gap-10 pt-5 sm:pt-10 pb-20 border border-l-0 border-r-0 border-t-gray-400">
+			<div className="min-w-40 lg:min-w-52 sm:mb-20">
 				<p
 					className="my-2 flex text-xl items-center cursor-pointer gap-2 font-semibold text-gray-700"
 					onClick={() => setShowFilter(!showFilter)}
@@ -111,6 +113,15 @@ export const ProductsPage = () => {
 					</span>
 				</p>
 				{/* category filter */}
+				<select
+					className={`border border-gray-300 text-sm px-2 h-[3rem] w-full ${showFilter ? "" : "hidden"} sm:block`}
+					onChange={toggleSort}
+				>
+					<option value="new-items">Sort by: New Items</option>
+					<option value="low-high">Sort by: Low to High</option>
+					<option value="high-low">Sort by: High to Low</option>
+					<option value="">Clear Filter</option>
+				</select>
 				<div
 					className={`border border-gray-100 sm:bg-transparent transition-colors hover:bg-gray-100 pl-5 py-3 mt-6 ${showFilter ? "" : "hidden"} sm:block`}
 				>
@@ -201,19 +212,9 @@ export const ProductsPage = () => {
 			{/* right */}
 			<div className="flex-1">
 				<div className="flex flex-col justify-between text-base sm:text-2xl">
-					<div className="mb-7">
-						<Title text1={"ALL"} text2={"PRODUCTS"} />
+					<div className="mt-8 sm:mt-2 mb-4 flex justify-center sm:justify-start">
+						<Title text1={"ALL"} text2={"PRODUCTS"} hideLine={true} />
 					</div>
-					{/* Product sort */}
-					<select
-						className="border border-gray-300 text-sm px-2 h-[3rem]"
-						onChange={toggleSort}
-					>
-						<option value="new-items">Sort by: New Items</option>
-						<option value="low-high">Sort by: Low to High</option>
-						<option value="high-low">Sort by: High to Low</option>
-						<option value="">Clear Filter</option>
-					</select>
 				</div>
 				<div>
 					{!filteredProducts.length ? (

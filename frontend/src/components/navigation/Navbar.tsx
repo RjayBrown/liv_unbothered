@@ -7,10 +7,11 @@ import { IoSearch } from "react-icons/io5";
 import { PiShoppingCartBold } from "react-icons/pi";
 
 export const Navbar = () => {
-	const { user, updateUser, setShowSearch } = useStoreContext();
+	const { user, updateUser, setShowSearch, cartCount } = useStoreContext();
 	const [visible, setVisible] = useState<boolean>(false);
 	const navigate = useNavigate();
 	const location = useLocation();
+	const numOfItems = cartCount();
 
 	useEffect(() => {
 		const body = document.querySelector("body");
@@ -93,7 +94,7 @@ export const Navbar = () => {
 				<Link to="cart" className="relative">
 					<PiShoppingCartBold className="text-xl" />
 					<span className=" absolute right-[-7px] bottom-[-7px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]">
-						{0}
+						{numOfItems}
 					</span>
 				</Link>
 				<MobileNavbar toggle={{ visible, setVisible }} />

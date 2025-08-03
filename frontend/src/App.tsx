@@ -12,6 +12,7 @@ import { Footer } from "./components/Footer";
 import { SingleProductPage } from "./pages/SingleProductPage";
 import { SearchBar } from "./components/SearchBar";
 import { useEffect } from "react";
+import { Bounce, ToastContainer } from "react-toastify";
 
 export const App = () => {
 	const location = useLocation();
@@ -21,6 +22,17 @@ export const App = () => {
 
 	return (
 		<AppDataProvider>
+			<ToastContainer
+				position="top-right"
+				autoClose={1000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick={false}
+				rtl={false}
+				draggable
+				theme="colored"
+				transition={Bounce}
+			/>
 			<Navbar />
 			<SearchBar />
 			<Routes>

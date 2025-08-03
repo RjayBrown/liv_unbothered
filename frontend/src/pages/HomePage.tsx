@@ -6,7 +6,7 @@ import { SocialLinkSection } from "../components/sections/SocialLinkSection";
 
 export const HomePage = () => {
 	return (
-		<div className="px-4 sm:px-24">
+		<div className="mx-4 sm:mx-24">
 			<HeroSection />
 			<LatestProductsSection />
 			<BestSellersSection />

@@ -5,8 +5,8 @@ import { FaBagShopping, FaComment, FaSwatchbook } from "react-icons/fa6";
 
 export const AboutPage = () => {
 	return (
-		<div className="px-6 sm:px-24 flex flex-col justify-center items-center w-full">
-			<div className="mb-7">
+		<div className="pb-20 mx-4 sm:mx-24 flex flex-col justify-center items-center border border-l-0 border-r-0 border-t-gray-400">
+			<div className="mt-12 mb-12">
 				<Title text1="ABOUT" text2="US" />
 			</div>
 			<div className="flex flex-col lg:flex-row justify-around mx-auto mb-24 w-full lg:w-4/5 gap-8">

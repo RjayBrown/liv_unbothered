@@ -8,7 +8,7 @@ import { type Size } from "../contexts/AppDataContext";
 import img from "../assets/LIV-UNBOTHERED.jpg";
 
 export const SingleProductPage = ({}) => {
-	const { products } = useStoreContext();
+	const { products, addToCart } = useStoreContext();
 	const { id } = useParams();
 	const product = products.find((product) => product._id === id);
 	const [imgUrl, setImgUrl] = useState<string>(product!.image[0]);
@@ -77,7 +77,8 @@ export const SingleProductPage = ({}) => {
 					</div>
 					<Button
 						onClick={() => {
-							console.log("Adding to cart");
+							console.log(product!._id, selectedSize);
+							addToCart(product!._id, selectedSize!);
 						}}
 					>
 						Add to Cart

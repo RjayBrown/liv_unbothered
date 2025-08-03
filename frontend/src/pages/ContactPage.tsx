@@ -3,8 +3,8 @@ import img from "../assets/LIV-UNBOTHERED.jpg";
 
 export const ContactPage = () => {
 	return (
-		<div className="px-6 sm:px-24 flex flex-col justify-center items-center">
-			<div className="mb-7">
+		<div className="mx-4 sm:mx-24 flex flex-col justify-center items-center border border-l-0 border-r-0 border-t-gray-400">
+			<div className="my-12">
 				<Title text1="CONTACT" text2="US" />
 			</div>
 			<div className="flex flex-col sm:flex-row justify-around mx-auto mb-12 w-full sm:w-4/5 gap-8">

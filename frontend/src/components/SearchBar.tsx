@@ -17,7 +17,7 @@ export const SearchBar = () => {
 	}, [location]);
 
 	return visible && showSearch ? (
-		<div className="flex justify-center items-center px-6 sm:px-0 py-8 bg-gray-100 mx-6 sm:mx-24 gap-2">
+		<div className="flex justify-center items-center px-6 sm:px-0 py-8 bg-gray-100 sm:mx-24 gap-2">
 			<div
 				className={`flex border bg-white ${
 					showSearch
