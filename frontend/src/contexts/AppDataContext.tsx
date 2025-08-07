@@ -6,7 +6,7 @@ import React, {
 	type ReactNode,
 } from "react";
 import { MOCK_DATA } from "../utils/MOCK_DATA"; // TODO: replace with product data - fetch from within context provider
-import { CURRENCY, DELIVERY_FEE } from "../utils/constants";
+import { CURRENCY, DELIVERY_FEE, TAX_RATE } from "../utils/constants";
 import { toast } from "react-toastify";
 
 export type AppDataContextType = {
@@ -20,12 +20,15 @@ export type AppDataContextType = {
 	setSearch: React.Dispatch<React.SetStateAction<string>>;
 	currency: string;
 	deliveryFee: number;
+	taxRate: number;
 	productCount: number;
 	setProductCount: React.Dispatch<React.SetStateAction<number>>;
 	cartItems: CartItem;
 	setCartItems: React.Dispatch<React.SetStateAction<CartItem>>;
 	addToCart: (productId: string, size: Size) => void;
 	cartCount: () => number;
+	subTotal: number;
+	setSubTotal: React.Dispatch<React.SetStateAction<number>>;
 } | null;
 
 export type Product = {
@@ -66,6 +69,7 @@ export const AppDataProvider: FC<AppDataProviderProps> = ({ children }) => {
 	const [showSearch, setShowSearch] = useState(false);
 	const [productCount, setProductCount] = useState(products.length);
 	const [cartItems, setCartItems] = useState<CartItem>();
+	const [subTotal, setSubTotal] = useState(0);
 
 	const updateUser = (name: "Me" | "You") => {
 		setUser(name);
@@ -94,18 +98,24 @@ export const AppDataProvider: FC<AppDataProviderProps> = ({ children }) => {
 
 		setCartItems(cartData);
 		toast.success("Added to cart!");
+		cartCount();
 	};
 
 	const cartCount = () => {
 		let cartCount = 0;
+		let costOfCartItems = 0;
+
 		for (let item in cartItems) {
 			for (let size in cartItems[item]) {
+				let thisSku = products.find((product) => product._id === item);
 				if (cartItems[item][size]) {
 					cartCount += cartItems[item][size];
+					costOfCartItems += thisSku!.price * cartItems[item][size];
 				}
 			}
 		}
-		return cartCount;
+		setSubTotal(costOfCartItems);
+		return cartCount < 1 ? 0 + cartCount : cartCount;
 	};
 
 	// FETCH PRODUCTS FROM DB
@@ -120,12 +130,15 @@ export const AppDataProvider: FC<AppDataProviderProps> = ({ children }) => {
 		setShowSearch,
 		currency: CURRENCY,
 		deliveryFee: DELIVERY_FEE,
+		taxRate: TAX_RATE,
 		productCount,
 		setProductCount,
 		cartItems,
 		setCartItems,
 		addToCart,
 		cartCount,
+		subTotal,
+		setSubTotal,
 	};
 
 	useEffect(() => {

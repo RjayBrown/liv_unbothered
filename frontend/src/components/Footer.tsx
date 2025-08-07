@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 
+import { FaEnvelope } from "react-icons/fa";
+import { FaSquarePhone } from "react-icons/fa6";
+
 export const Footer = () => {
 	return (
 		<footer className="px-6 sm:px-24">
-			<div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-32 mx-auto text-small">
+			<div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-8 mx-auto text-small">
 				<div>
 					<h1 className="mb-5 w-32">LOGO</h1>
 					<p className="w-full md:w-2/3 text-gray-600">
@@ -12,27 +15,44 @@ export const Footer = () => {
 				</div>
 				<div>
 					<p className="text-xl font-medium mb-5">COMPANY</p>
-					<ul className="flex flex-col text-gray-600 gap-1">
-						<Link to={""}>
-							<li>Home</li>
+					<div className="flex flex-col text-gray-600 gap-1">
+						<Link
+							className="hover:font-semibold hover:text-red-700 transition-all w-fit"
+							to={""}
+						>
+							Home
 						</Link>
-						<Link to={"about"}>
-							<li>About</li>
+						<Link
+							className="hover:font-semibold hover:text-red-700 transition-all w-fit"
+							to={"about"}
+						>
+							About
 						</Link>
-						<Link to={""}>
-							<li>Delivery</li>
+						<Link
+							className="hover:font-semibold hover:text-red-700 transition-all w-fit"
+							to={""}
+						>
+							Delivery
 						</Link>
-						<Link to={""}>
-							<li>Privacy Policy</li>
+						<Link
+							className="hover:font-semibold hover:text-red-700 transition-all w-fit"
+							to={""}
+						>
+							Privacy Policy
 						</Link>
-					</ul>
+					</div>
 				</div>
 				<div>
 					<p className="text-xl font-medium mb-5">GET IN TOUCH</p>
-					<ul className="flex flex-col text-gray-600 gap-1">
-						<li>1 (000) 000-0000</li>
-						<li>store@email.com</li>
-					</ul>
+					<div>
+						<p className="text-gray-700 flex justify-start items-center gap-2">
+							<FaSquarePhone className="text-sm" /> 1 (000) 000-0000
+						</p>
+						<p className="text-gray-700 flex justify-start items-center gap-2">
+							<FaEnvelope className="text-sm" />
+							store@email.com
+						</p>
+					</div>
 				</div>
 			</div>
 			<div>

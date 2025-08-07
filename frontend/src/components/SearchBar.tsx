@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useStoreContext } from "../utils/hooks/useStoreContext";
+
 import { CgClose } from "react-icons/cg";
 
 export const SearchBar = () => {

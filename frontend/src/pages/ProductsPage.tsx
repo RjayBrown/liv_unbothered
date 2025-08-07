@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Title } from "../components/Title";
-import { type Products } from "../contexts/AppDataContext";
-import { ProductCard } from "../components/ProductCard";
 import { useStoreContext } from "../utils/hooks/useStoreContext";
+import { type Products } from "../contexts/AppDataContext";
+
+import { Title } from "../components/Title";
+import { ProductCard } from "../components/ProductCard";
 import { FaCaretUp } from "react-icons/fa6";
 
 type SortTypes = "new-items" | "low-high" | "high-low" | "";
@@ -16,15 +17,15 @@ export const ProductsPage = () => {
 	const [subCategory, setSubCategory] = useState<string>();
 	const [, setSortType] = useState<SortTypes>("");
 
-	// console.log(sortType);
-
 	useEffect(() => {
 		let productCopy = products.slice();
 		let filtered = productCopy.filter((product) =>
 			product.name.toLowerCase().includes(search.toLowerCase())
 		);
 
-		if (showSearch && search && filtered.length) {
+		if (!filtered.length) {
+			setFilteredProducts([]);
+		} else if (showSearch && search && filtered.length) {
 			setFilteredProducts(filtered);
 			setProductCount(filtered.length);
 		} else {
@@ -38,10 +39,6 @@ export const ProductsPage = () => {
 		radioBtns.forEach((btn) => {
 			if (!category && !subCategory) btn.checked = false;
 		});
-
-		// category || subCategory
-		// 	? console.log(category, subCategory)
-		// 	: console.log("No Filter!");
 	}, [filteredProducts]);
 
 	const clearFilter = () => {

@@ -1,6 +1,7 @@
+import { NavLink } from "react-router-dom";
+
 import { CgMenuRightAlt } from "react-icons/cg";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { NavLink } from "react-router-dom";
 
 interface MobileNavbarProps {
 	toggle: {

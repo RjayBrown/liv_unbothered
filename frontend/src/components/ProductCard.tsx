@@ -1,5 +1,5 @@
-import { type Product } from "../contexts/AppDataContext";
 import { useNavigate } from "react-router-dom";
+import { type Product } from "../contexts/AppDataContext";
 
 interface ProductCardProps {
 	product: Product;

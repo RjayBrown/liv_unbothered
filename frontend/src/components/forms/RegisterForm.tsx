@@ -1,18 +1,23 @@
 import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import { Button } from "../buttons/Button";
 
 export const RegisterForm = () => {
 	const [error, setError] = useState("");
+	const nameRef = useRef<HTMLInputElement>(null);
 	const emailRef = useRef<HTMLInputElement>(null);
 	const passwordRef = useRef<HTMLInputElement>(null);
+	const password2Ref = useRef<HTMLInputElement>(null);
 	const navigate = useNavigate();
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 
+		const name = nameRef.current?.value;
 		const email = emailRef.current?.value;
 		const password = passwordRef.current?.value;
+		const password2 = password2Ref.current?.value;
 
 		// console.log({ email, password });
 
@@ -44,12 +49,20 @@ export const RegisterForm = () => {
 			onSubmit={handleSubmit}
 			className="flex flex-col justify-center items-center w-full py-6 sm:w-2/4"
 		>
+			<label className="w-full" htmlFor="name">
+				<input
+					ref={nameRef}
+					type="name"
+					placeholder="Name"
+					className="py-1 px-3 my-2 w-full border border-gray-400 rounded-sm"
+				/>
+			</label>
 			<label className="w-full" htmlFor="email">
 				<input
 					ref={emailRef}
 					type="email"
 					placeholder="Email"
-					className="py-1 px-3 my-2 w-full border border-gray-700"
+					className="py-1 px-3 my-2 w-full border border-gray-400 rounded-sm"
 				/>
 			</label>
 
@@ -58,7 +71,15 @@ export const RegisterForm = () => {
 					ref={passwordRef}
 					type="password"
 					placeholder="Password"
-					className="py-1 px-3 my-2 border w-full border-gray-700"
+					className="py-1 px-3 my-2 w-full border border-gray-400 rounded-sm"
+				/>
+			</label>
+			<label className="w-full" htmlFor="confirm-password">
+				<input
+					ref={password2Ref}
+					type="password"
+					placeholder="Confirm Password"
+					className="py-1 px-3 my-2 w-full border border-gray-400 rounded-sm"
 				/>
 			</label>
 			<h2
@@ -66,6 +87,11 @@ export const RegisterForm = () => {
 			>
 				{error}
 			</h2>
+			<div className="flex justify-end w-full mb-4">
+				<span className="text-xs hover:text-gray-500 cursor-pointer">
+					<Link to={"/login"}>Already have an account?</Link>
+				</span>
+			</div>
 
 			<Button type="submit">Register</Button>
 		</form>

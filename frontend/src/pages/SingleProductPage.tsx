@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useStoreContext } from "../utils/hooks/useStoreContext";
+import { type Size } from "../contexts/AppDataContext";
+
 import { ProductCard } from "../components/ProductCard";
 import { Title } from "../components/Title";
 import { Button } from "../components/buttons/Button";
-import { type Size } from "../contexts/AppDataContext";
+
 import img from "../assets/LIV-UNBOTHERED.jpg";
 
 export const SingleProductPage = ({}) => {
@@ -68,7 +70,7 @@ export const SingleProductPage = ({}) => {
 						{product!.sizes.map((size, i) => (
 							<div
 								key={i}
-								className={`p-2 w-12 bg-gray-200 text-black text-center my-auto cursor-pointer hover:bg-gray-300 transition-colors border-2 ${selectedSize === size ? "border-black" : "border-transparent"}`}
+								className={`p-2 w-12 bg-gray-200 text-black text-center my-auto cursor-pointer hover:bg-gray-300 transition-colors border-2 ${selectedSize === size ? "border-black bg-gray-800 hover:bg-gray-800 text-white" : "border-transparent"}`}
 								onClick={() => setSelectedSize(size)}
 							>
 								{size}
@@ -88,7 +90,7 @@ export const SingleProductPage = ({}) => {
 						<p className="text-gray-400">100% Original Product</p>
 						<p className="text-gray-400">
 							Cash On Delivery:{" "}
-							<span className="text-green-400">Available</span>
+							<span className="text-green-500">Available</span>
 						</p>
 						<p className="text-gray-400">7-Day Return Policy</p>
 					</div>

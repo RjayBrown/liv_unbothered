@@ -1,12 +1,15 @@
 interface TitleProps {
 	text1: string;
-	text2: string;
+	text2?: string;
 	hideLine?: boolean;
+	className?: string;
 }
 
-export const Title = ({ text1, text2, hideLine }: TitleProps) => {
+export const Title = ({ text1, text2, hideLine, className }: TitleProps) => {
 	return (
-		<div className="flex flex-col sm:flex-row gap-2 justify-center items-center text-2xl font-medium">
+		<div
+			className={`flex flex-col sm:flex-row gap-2 justify-center items-center text-2xl font-medium ${className}`}
+		>
 			<p
 				className={
 					hideLine === true

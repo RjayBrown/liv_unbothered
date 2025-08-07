@@ -1,4 +1,6 @@
 import { Title } from "../components/Title";
+import { FaEnvelope, FaSquarePhone } from "react-icons/fa6";
+
 import img from "../assets/LIV-UNBOTHERED.jpg";
 
 export const ContactPage = () => {
@@ -11,16 +13,16 @@ export const ContactPage = () => {
 				<div className="h-[424px] w-full sm:w-[45%] border border-gray-300">
 					<img src={img} className="w-full h-full"></img>
 				</div>
-				<div className="flex flex-col justify-center sm:justify-around w-full sm:w-2/5 gap-4">
-					<p className="font-semibold text-gray-700 text-xl">Our Store</p>
+				<div className="flex flex-col justify-center sm:justify-around w-full sm:w-2/5">
+					<p className="font-semibold text-gray-700 text-xl">Reach Out</p>
 					<div>
-						<p className="text-gray-500">13203 Main St.</p>
-						<p className="text-gray-500">New York, NY</p>
-						<p className="text-gray-500">USA</p>
-					</div>
-					<div>
-						<p className="text-gray-500">Tel: 1 (000) 000-0000</p>
-						<p className="text-gray-500">Email: store@email.com</p>
+						<p className="text-gray-700 flex justify-start items-center gap-2">
+							<FaSquarePhone className="text-sm" /> 1 (000) 000-0000
+						</p>
+						<p className="text-gray-700 flex justify-start items-center gap-2">
+							<FaEnvelope className="text-sm" />
+							store@email.com
+						</p>
 					</div>
 					<p className="font-semibold text-gray-700 text-xl">Join the Team</p>
 					<p className="text-gray-500">
@@ -31,7 +33,7 @@ export const ContactPage = () => {
 						className="my-3 px-3 py-1 bg-gray-800 hover:bg-gray-700 text-white  w-fit transition-colors"
 						href="mailto:emal@mail.com"
 					>
-						Reach Out
+						Send a Message
 					</a>
 				</div>
 			</div>

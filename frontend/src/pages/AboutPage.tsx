@@ -1,7 +1,8 @@
 import { Title } from "../components/Title";
 import { SocialLinkSection } from "../components/sections/SocialLinkSection";
-import img from "../assets/LIV-UNBOTHERED.jpg";
 import { FaBagShopping, FaComment, FaSwatchbook } from "react-icons/fa6";
+
+import img from "../assets/LIV-UNBOTHERED.jpg";
 
 export const AboutPage = () => {
 	return (

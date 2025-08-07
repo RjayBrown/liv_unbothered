@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useStoreContext } from "../../utils/hooks/useStoreContext";
-import { MobileNavbar } from "./MobileNavbar";
+
 import { FaRegCircleUser } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
 import { PiShoppingCartBold } from "react-icons/pi";
+import { MobileNavbar } from "./MobileNavbar";
 
 export const Navbar = () => {
 	const { user, updateUser, setShowSearch, cartCount } = useStoreContext();
 	const [visible, setVisible] = useState<boolean>(false);
 	const navigate = useNavigate();
 	const location = useLocation();
-	const numOfItems = cartCount();
+	let count = cartCount();
 
 	useEffect(() => {
 		const body = document.querySelector("body");
@@ -94,7 +95,7 @@ export const Navbar = () => {
 				<Link to="cart" className="relative">
 					<PiShoppingCartBold className="text-xl" />
 					<span className=" absolute right-[-7px] bottom-[-7px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]">
-						{numOfItems}
+						{count}
 					</span>
 				</Link>
 				<MobileNavbar toggle={{ visible, setVisible }} />

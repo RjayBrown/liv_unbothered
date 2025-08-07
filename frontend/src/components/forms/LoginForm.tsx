@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import { Button } from "../buttons/Button";
 
 export const LoginForm = () => {
@@ -49,7 +50,7 @@ export const LoginForm = () => {
 					ref={emailRef}
 					type="email"
 					placeholder="Email"
-					className="py-1 px-3 my-2 w-full border border-gray-700"
+					className="py-1 px-3 my-2 w-full border border-gray-400 rounded-sm"
 				/>
 			</label>
 
@@ -58,7 +59,7 @@ export const LoginForm = () => {
 					ref={passwordRef}
 					type="password"
 					placeholder="Password"
-					className="py-1 px-3 my-2 border w-full border-gray-700"
+					className="py-1 px-3 my-2 w-full border border-gray-400 rounded-sm"
 				/>
 			</label>
 			<h2
@@ -66,6 +67,14 @@ export const LoginForm = () => {
 			>
 				{error}
 			</h2>
+			<div className="flex justify-between w-full mb-4">
+				<span className="text-xs hover:text-gray-500 cursor-pointer">
+					<Link to={"/register"}>Create an account</Link>
+				</span>
+				<span className="text-xs hover:text-gray-500 cursor-pointer">
+					Forgot your password?
+				</span>
+			</div>
 
 			<Button type="submit">Log In</Button>
 		</form>

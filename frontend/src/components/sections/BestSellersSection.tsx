@@ -1,10 +1,12 @@
-import { useContext, useEffect, useState } from "react";
-import { AppDataContext, type Products } from "../../contexts/AppDataContext";
-import { ProductCard } from "../ProductCard";
+import { useState, useEffect } from "react";
+import { useStoreContext } from "../../utils/hooks/useStoreContext";
+import type { Products } from "../../contexts/AppDataContext";
+
 import { Title } from "../Title";
+import { ProductCard } from "../ProductCard";
 
 export const BestSellersSection = () => {
-	const context = useContext(AppDataContext);
+	const context = useStoreContext();
 	const [topFiveProducts, setTopFiveProducts] = useState<Products>([]);
 
 	// replace with custom hook to get data from api
