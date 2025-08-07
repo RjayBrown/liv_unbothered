@@ -8,27 +8,27 @@ export const RegisterForm = () => {
 	const nameRef = useRef<HTMLInputElement>(null);
 	const emailRef = useRef<HTMLInputElement>(null);
 	const passwordRef = useRef<HTMLInputElement>(null);
-	const password2Ref = useRef<HTMLInputElement>(null);
+	const confirmPasswordRef = useRef<HTMLInputElement>(null);
 	const navigate = useNavigate();
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 
-		const name = nameRef.current?.value;
+		// const name = nameRef.current?.value;
 		const email = emailRef.current?.value;
 		const password = passwordRef.current?.value;
-		const password2 = password2Ref.current?.value;
+		const confirmPassword = confirmPasswordRef.current?.value;
 
 		// console.log({ email, password });
 
 		(async () => {
 			const myHeaders = new Headers();
 			myHeaders.append("Content-Type", "application/json");
-			const url = "http://localhost:3000/auth/login";
+			const url = "http://localhost:3000/auth/register";
 
 			const res = await fetch(url, {
 				method: "POST",
-				body: JSON.stringify({ email, password }),
+				body: JSON.stringify({ email, password, confirmPassword }),
 				credentials: "include",
 				headers: myHeaders,
 			});
@@ -36,7 +36,7 @@ export const RegisterForm = () => {
 			const successMsg = await res.json();
 
 			if (res.ok) {
-				console.log(successMsg.message);
+				console.log(successMsg);
 				navigate("..");
 			} else {
 				setError(successMsg.message);
@@ -49,6 +49,11 @@ export const RegisterForm = () => {
 			onSubmit={handleSubmit}
 			className="flex flex-col justify-center items-center w-full py-6 sm:w-2/4"
 		>
+			<h2
+				className={`${error ? "text-center text-red-700" : "text-transparent"}`}
+			>
+				{error}
+			</h2>
 			<label className="w-full" htmlFor="name">
 				<input
 					ref={nameRef}
@@ -76,17 +81,12 @@ export const RegisterForm = () => {
 			</label>
 			<label className="w-full" htmlFor="confirm-password">
 				<input
-					ref={password2Ref}
+					ref={confirmPasswordRef}
 					type="password"
 					placeholder="Confirm Password"
 					className="py-1 px-3 my-2 w-full border border-gray-400 rounded-sm"
 				/>
 			</label>
-			<h2
-				className={`${error ? "text-center text-red-700" : "text-transparent"}`}
-			>
-				{error}
-			</h2>
 			<div className="flex justify-end w-full mb-4">
 				<span className="text-xs hover:text-gray-500 cursor-pointer">
 					<Link to={"/login"}>Already have an account?</Link>

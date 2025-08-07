@@ -45,6 +45,11 @@ export const LoginForm = () => {
 			onSubmit={handleSubmit}
 			className="flex flex-col justify-center items-center w-full py-6 sm:w-2/4"
 		>
+			<h2
+				className={`${error ? "text-center text-red-700" : "text-transparent"}`}
+			>
+				{error}
+			</h2>
 			<label className="w-full" htmlFor="email">
 				<input
 					ref={emailRef}
@@ -62,11 +67,6 @@ export const LoginForm = () => {
 					className="py-1 px-3 my-2 w-full border border-gray-400 rounded-sm"
 				/>
 			</label>
-			<h2
-				className={`${error ? "text-center text-red-700" : "text-transparent"}`}
-			>
-				{error}
-			</h2>
 			<div className="flex justify-between w-full mb-4">
 				<span className="text-xs hover:text-gray-500 cursor-pointer">
 					<Link to={"/register"}>Create an account</Link>
